@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>비밀번호 확인</title>
+  <link rel="stylesheet" href="/css/style.css"> <!-- 공통 스타일 -->
+  <link rel="stylesheet" href="/css/header-style.css"> <!-- 헤더에 대한 고유 CSS -->
+  <link rel="stylesheet" href="/css/main-nav-style.css"> <!-- 네비게이션에 대한 고유 CSS -->
+  <link rel="stylesheet" href="/css/footer-style.css"> <!-- 푸터에 대한 고유 CSS -->
+  <link rel="stylesheet" href="/css/pwd-check-style.css"> <!-- 비밀번호 확인에 대한 고유 CSS -->
+</head>
+<body>
+
+<!-- 헤더 -->
+<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/nav :: nav"></div>
+
+<!-- 비밀번호 확인 폼 -->
+<div class="pwd-check-container">
+  <h1>비밀번호 확인</h1>
+  <form action="/pwd-check" method="post" class="pwd-check-form">
+    <div class="pwd-check-group">
+      <label for="pwd">비밀번호:</label>
+      <input type="password" id="pwd" name="pwd" class="pwd-input-field" required>
+    </div>
+    <button type="submit" class="pwd-check-btn">확인</button>
+    <span class="error-message" th:text="${errorMessage}"></span>
+  </form>
+</div>
+
+<!-- 푸터 -->
+<div th:replace="fragments/footer :: footer"></div>
+
+<!-- 비밀번호 틀릴 때 팝업 메시지 -->
+<div id="errorPopup"></div>
+
+<!-- 팝업 표시를 위한 스크립트 -->
+<script>
+  const errorMessage = [[${errorMessage}]];
+  if (errorMessage) {
+      const popup = document.getElementById("errorPopup");
+      popup.textContent = errorMessage;
+      popup.classList.add("show");
+      setTimeout(() => {
+          popup.classList.remove("show");
+      }, 3000);  // 3초 후 팝업 사라짐
+  }
+</script>
+
+</body>
+</html>

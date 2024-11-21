@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입 완료</title>
+  <link rel="stylesheet" href="/css/style.css"> <!-- 공통 스타일 -->
+  <link rel="stylesheet" href="/css/header-style.css"> <!-- 헤더에 대한 고유 CSS -->
+  <link rel="stylesheet" href="/css/main-nav-style.css"> <!-- 네비게이션에 대한 고유 CSS -->
+  <link rel="stylesheet" href="/css/footer-style.css"> <!-- 푸터에 대한 고유 CSS -->
+  <link rel="stylesheet" href="/css/joinok-style.css"> <!-- joinok 페이지에 대한 고유 스타일 -->
+</head>
+<body>
+<!-- 헤더 -->
+<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/nav :: nav"></div>
+
+<!-- 회원가입 완료 메시지 -->
+<div class="joinok-container">
+  <h1>회원가입 완료</h1>
+  <p>회원가입이 성공적으로 완료되었습니다!</p>
+  <p>로그인을 진행해 주세요.</p>
+  <a href="/login" class="login-button">로그인하기</a>
+</div>
+
+<!-- 푸터 -->
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

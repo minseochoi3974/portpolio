@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Settings</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/header-style.css"> <!-- 헤더에 대한 고유 CSS -->
+  <link rel="stylesheet" href="/css/main-nav-style.css"> <!-- 네비게이션에 대한 고유 CSS -->
+  <link rel="stylesheet" href="/css/footer-style.css"> <!-- 푸터에 대한 고유 CSS -->
+  <link rel="stylesheet" href="/css/edit-style.css"> <!-- 수정 페이지 전용 CSS -->
+
+</head>
+<body>
+<!-- 헤더 -->
+<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/nav :: nav"></div>
+<br>
+
+<!-- 탭 네비게이션 -->
+<div class="edit-nav-bar">
+  <div id="profile-tab" class="edit-nav-item active" onclick="showSection('profile')">프로필 수정</div>
+  <div id="blog-tab" class="edit-nav-item" onclick="showSection('blog')">블로그 수정</div>
+</div>
+<!-- 프로필 수정 섹션 -->
+<div id="profile-section" class="edit-section active">
+  <h2>프로필 수정</h2>
+  <form action="/saveProfileSettings" method="post" enctype="multipart/form-data">    <!-- 프로필 수정 폼 내용 추가 예정 -->
+    <div class="profile-image-section">
+      <!-- 프로필 이미지 영역 -->
+      <div class="profile-image-wrapper">
+        <img id="profile-image" th:src="${profileImage}" class="profile-image">
+      </div>
+
+      <!-- 이미지 등록 및 삭제 버튼 -->
+      <div class="profile-image-controls">
+        <label for="profile-image-upload" class="upload-button">등록</label>
+        <input type="file" id="profile-image-upload" name="profileImage" style="display: none;" onchange="previewProfileImage(event)">
+        <button type="button" class="delete-button" onclick="deleteProfileImage()">삭제</button>
+      </div>
+
+      <!-- 프로필 이미지 설명 -->
+      <p>프로필 이미지는 가로 161px 썸네일로 생성됩니다.</p>
+    </div>
+
+    <label for="nickname">닉네임:</label>
+    <input type="text" id="nickname" name="nickname" th:value="${nickname}">
+    <br>
+    <label for="bio">한줄설명:</label>
+    <input type="text" id="bio" name="bio" th:value="${bio}">
+    <br>
+    <button type="submit">저장</button>
+    <button type="button" onclick="location.href='/myblog';">뒤로가기</button> <!-- 뒤로가기 버튼 추가 -->
+
+  </form>
+</div>
+
+<!-- 블로그 수정 섹션 -->
+<div id="blog-section" class="edit-section">
+  <h2>블로그 수정</h2>
+  <form action="/saveBlogTitle" method="post">
+    <!-- 블로그 제목 입력 -->
+    <label for="blogTitle">블로그 제목:</label>
+    <input type="text" id="blogTitle" name="blogTitle" th:value="${blogTitle}" required>
+    <button type="submit">제목 저장</button>
+  </form>
+  <br>
+  <br>
+  <form action="/saveBlogSettings" method="post">
+    <!-- 레이아웃 선택 -->
+    <label>레이아웃 선택:</label><br>
+    <input type="radio" id="layout1" name="layout" value="1"
+           th:checked="${layout == 1}">
+    <label for="layout1">레이아웃 1</label><br>
+
+    <input type="radio" id="layout2" name="layout" value="2"
+           th:checked="${layout == 2}">
+    <label for="layout2">레이아웃 2</label><br>
+    <br>
+    <button type="submit">레이아웃 저장</button>
+    <button type="button" onclick="location.href='/myblog';">뒤로가기</button> <!-- 뒤로가기 버튼 추가 -->
+  </form>
+</div>
+<br><br><br><br><br>
+<!-- 스크립트 -->
+<script>
+  function showSection(section) {
+      // 모든 섹션 숨기기
+      document.querySelectorAll('.edit-section').forEach(function(sec) {
+          sec.classList.remove('active'); // 모든 섹션 숨김
+      });
+      document.querySelectorAll('.edit-nav-item').forEach(function(tab) {
+          tab.classList.remove('active'); // 모든 탭 비활성화
+      });
+
+      // 클릭된 섹션과 탭만 활성화
+      document.getElementById(section + '-section').classList.add('active'); // 해당 섹션 활성화
+      document.getElementById(section + '-tab').classList.add('active'); // 해당 탭 활성화
+  }
+
+     function previewProfileImage(event) {
+        const reader = new FileReader();
+        reader.onload = function() {
+            const output = document.getElementById('profile-image');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
+    function deleteProfileImage() {
+        const output = document.getElementById('profile-image');
+        output.src = '/images/default-profile.png';  // 기본 프로필 이미지로 복원
+        document.getElementById('profile-image-upload').value = ''; // 파일 입력 초기화
+    }
+</script>
+
+<!-- 푸터 -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

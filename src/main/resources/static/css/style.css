@@ -1,0 +1,2171 @@
+
+/* 컨테이너 기본 설정 */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+/* 아이템 기본 설정 */
+.item {
+    flex: 1 1 200px; /* 최소 너비는 200px, 화면 크기에 맞춰 늘어남 */
+}
+
+/* 미디어 쿼리 */
+@media (max-width: 768px) {
+    .container {
+        padding: 5px;
+    }
+    .item {
+        flex: 1 1 100px;
+    }
+}
+
+
+/* header */
+/* 모든 요소의 기본 마진과 패딩을 제거 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 기본 레이아웃 */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  color: black;
+}
+
+/* 헤더 기본 레이아웃 */
+.header-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: transparent;
+  color: black;
+  height: 10vh;
+}
+
+/* 제목 스타일 */
+.header-navbar-left h1 {
+  margin: 0;
+}
+
+.header-blog-title {
+  color: black;
+  text-decoration: none;
+}
+
+/* 버튼들을 오른쪽에 정렬 */
+.header-navbar-right {
+  display: flex;
+  gap: 15px;
+}
+
+/* 버튼의 기본 스타일 */
+.header-nav-item {
+  display: inline-block;
+  padding: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* 이미지 크기 설정 */
+.header-icon-image {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+}
+
+/* 호버 시 살짝 밝게 */
+.header-nav-item:hover .header-icon-image {
+  opacity: 0.8;
+}
+/* ================================================== */
+
+
+/* nav */
+
+/* Main Navigation Bar Styles */
+.main-nav {
+    background-color: transparent;  /* 흰색 배경 */
+    color: black; /* 검정색 텍스트 */
+    padding: 10px; /* 상하 10px의 패딩 */
+    text-align: center; /* 가운데 정렬 */
+    width: 100%; /* 가로 폭을 100%로 설정 */
+    margin: 0 auto; /* 중앙에 배치 */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* 가벼운 그림자 */
+    border-radius: 8px; /* 둥근 모서리 */
+}
+
+/* 네비게이션 메뉴 리스트 */
+.main-nav-list {
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    margin: 0;
+    padding: 0;
+    display: flex; /* 가로로 나열 */
+    justify-content: center; /* 중앙 정렬 */
+    gap: 20px; /* 메뉴 항목 간의 간격 */
+}
+
+/* 네비게이션 메뉴 아이템 */
+.main-nav-item {
+    font-size: 14px; /* 글자 크기 */
+    font-weight: bold; /* 두꺼운 글씨 */
+    padding: 10px 15px; /* 패딩 */
+    border-radius: 5px; /* 둥근 모서리 */
+}
+
+/* 메뉴 링크 */
+.main-nav-item a {
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: black; /* 링크 색상 */
+    display: flex; /* 텍스트와 이미지를 가로로 나열 */
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 8px; /* 아이콘과 텍스트 간 간격 */
+}
+
+/* 이미지 아이콘 크기 설정 */
+.main-nav-item img {
+    width: 24px; /* 아이콘 너비 */
+    height: 24px; /* 아이콘 높이 */
+    vertical-align: middle; /* 세로 정렬 */
+}
+
+/* 호버 시 배경색 */
+.main-nav-item a:hover {
+    background-color: #F0F0F0; /* 밝은 회색 */
+    border-radius: 5px; /* 둥근 모서리 */
+    padding: 5px 10px; /* 추가 패딩 */
+}
+
+/* 반응형: 작은 화면에서 메뉴 간격 줄이기 */
+@media (max-width: 768px) {
+    .main-nav-list {
+        flex-direction: column; /* 세로로 나열 */
+        gap: 10px; /* 항목 간 간격 줄임 */
+    }
+}
+/* ================================================== */
+
+/* footer */
+
+/* 푸터 스타일 */
+.custom-footer {
+    background-color: #FFFFFF; /* 푸터 배경 색상 */
+    color: black; /* 글자 색상 */
+    padding: 20px 0; /* 상하 패딩 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    position: relative;
+    bottom: 0;
+    width: 100%; /* 푸터가 화면 전체 너비 차지 */
+}
+
+/* 푸터 컨테이너 */
+.custom-footer-container {
+    max-width: 1200px; /* 최대 너비 */
+    margin: 0 auto; /* 가운데 정렬 */
+    padding: 0 20px; /* 좌우 패딩 */
+    font-size: 14px; /* 글자 크기 */
+}
+
+/* 푸터 링크 스타일 */
+.custom-footer p {
+    margin: 0;
+    color: white;
+}
+
+.custom-footer p a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.custom-footer p a:hover {
+    text-decoration: underline; /* 호버 시 밑줄 */
+}
+/* ================================================== */
+
+/* main */
+/* 메인 페이지 (index) 이미지 설정 */
+.main-home-content {
+  height: 80vh; /* 화면 높이의 80%로 설정 (푸터와 헤더 사이에 맞게) */
+  display: flex;
+  justify-content: center; /* 이미지 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  background-color: #f4f4f4; /* 배경색 설정 */
+}
+
+/* 이미지 컨테이너 */
+.main-image-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 이미지 설정 (전체 화면 채우기) */
+.main-full-image {
+  width: 100%; /* 가로 100%로 화면 꽉 채우기 */
+  height: 100%; /* 세로도 100%로 화면 꽉 채우기 */
+  object-fit: contain; /* 이미지 비율 유지하면서 꽉 채우기 */
+}
+
+/* ================================================== */
+
+/* join */
+
+/* 회원가입 페이지 배경 및 폼 */
+.join-main-content {
+  background-color: white; /* 배경색 흰색 */
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 150px); /* 헤더와 푸터 높이를 제외한 페이지 중앙 배치 */
+  position: relative;
+  z-index: 1; /* 다른 요소보다 위에 배치 */
+}
+
+/* 폼 컨테이너 */
+.join-form {
+  background-color: white; /* 폼 배경 흰색 */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto; /* 폼을 화면 가운데로 위치시키기 위한 설정 */
+  z-index: 2; /* 폼이 다른 요소보다 위에 표시 */
+}
+
+/* 헤더와 네비게이션 및 푸터가 정상적으로 보이도록 수정 */
+header, nav, footer {
+  z-index: 100; /* 헤더, 네비, 푸터를 가장 위에 표시 */
+  position: relative;
+}
+
+/* 폼 타이틀 */
+.join-form-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* 입력 필드 */
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="email"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* 버튼 스타일 */
+button {
+  padding: 10px 15px;
+  background-color: #e0e0e0; /* 연한 회색 버튼 */
+  color: black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #d0d0d0; /* 호버 시 밝은 회색 */
+}
+
+/* 오류와 성공 메시지 */
+.availability {
+  font-weight: bold;
+  margin-left: 10px;
+}
+.available {
+  color: green;
+}
+.not-available {
+  color: red;
+}
+.error {
+  color: red;
+  font-weight: bold;
+}
+.success {
+  color: green;
+  font-weight: bold;
+}
+
+
+/* ================================================== */
+
+/* joinok */
+
+/* joinok 스타일 */
+.joinok-container {
+    background-color: white; /* 배경을 흰색으로 설정 */
+    padding: 40px;
+    margin: 100px auto; /* 상단에 여백을 두어 중앙에 배치 */
+    max-width: 600px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 약간의 그림자 추가 */
+}
+
+.joinok-container h1 {
+    font-size: 28px;
+    color: #333; /* 텍스트 색상 */
+    margin-bottom: 20px;
+}
+
+.joinok-container p {
+    font-size: 18px;
+    color: #666; /* 부드러운 텍스트 색상 */
+    margin-bottom: 20px;
+}
+
+.login-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f0f0f0; /* 연한 회색 배경 */
+    color: black; /* 텍스트 색상 */
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #ccc; /* 약간의 테두리 */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #e0e0e0; /* 호버 시 조금 더 진한 회색 */
+}
+
+
+/* ================================================== */
+
+/* joinok */
+
+/* joinok 스타일 */
+.joinok-container {
+    background-color: white; /* 배경을 흰색으로 설정 */
+    padding: 40px;
+    margin: 100px auto; /* 상단에 여백을 두어 중앙에 배치 */
+    max-width: 600px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 약간의 그림자 추가 */
+}
+
+.joinok-container h1 {
+    font-size: 28px;
+    color: #333; /* 텍스트 색상 */
+    margin-bottom: 20px;
+}
+
+.joinok-container p {
+    font-size: 18px;
+    color: #666; /* 부드러운 텍스트 색상 */
+    margin-bottom: 20px;
+}
+
+.login-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f0f0f0; /* 연한 회색 배경 */
+    color: black; /* 텍스트 색상 */
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #ccc; /* 약간의 테두리 */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #e0e0e0; /* 호버 시 조금 더 진한 회색 */
+}
+
+/* ================================================== */
+
+/* login */
+
+/* 로그인 페이지 배경 및 폼 */
+.login-form-container {
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* 수직 정렬 */
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 150px); /* 헤더와 푸터를 제외한 페이지 중앙 배치 */
+  position: relative;
+  z-index: 1;
+}
+
+/* 폼 타이틀 */
+.login-form-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px; /* 폼과의 간격을 추가 */
+  color: #333;
+  width: 100%; /* 너비를 100%로 설정 */
+}
+
+/* 폼 요소 스타일 */
+.login-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+/* 입력 필드 */
+.login-form-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* 버튼 스타일 */
+.login-form-button {
+  padding: 10px 15px;
+  background-color: #e0e0e0; /* 연한 회색 버튼 */
+  color: black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login-form-button:hover {
+  background-color: #d0d0d0; /* 호버 시 밝은 회색 */
+}
+
+/* 오류 팝업 */
+.login-error-popup {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  display: none; /* 기본적으로 숨김 */
+  text-align: center;
+}
+
+
+/* ================================================== */
+
+/* profile */
+
+/* 프로필 페이지 배경 및 폼 */
+.profile-container {
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 150px); /* 헤더와 푸터를 제외한 페이지 중앙 배치 */
+  position: relative;
+  z-index: 1;
+  width: 100%; /* 가로 중앙 정렬 */
+  max-width: 500px; /* 폼의 최대 너비 설정 */
+  margin: 0 auto; /* 수평 중앙 배치 */
+}
+
+/* 폼 타이틀 */
+.profile-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* 폼 그룹 */
+.profile-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* 레이블 스타일 */
+.profile-label {
+  font-weight: bold;
+  color: #444;
+  width: 30%;
+  text-align: left;
+}
+
+/* 입력 필드 스타일 */
+.profile-input {
+  width: 65%;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  color: #555;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* 읽기 전용 필드 스타일 */
+.profile-input[readonly] {
+  background-color: #e9e9e9;
+  color: #666;
+}
+
+/* 수정하기 버튼 스타일 */
+.profile-btn {
+  background-color: #333;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 80%;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.profile-btn:hover {
+  background-color: #555;
+}
+
+/* ================================================== */
+
+/* pwd-check */
+
+/* 비밀번호 확인 폼 컨테이너 */
+.pwd-check-container {
+  max-width: 400px;
+  margin: 50px auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 폼 타이틀 */
+.pwd-check-container h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* 폼 그룹 */
+.pwd-check-group {
+  margin-bottom: 20px;
+  padding: 5px 0;
+}
+
+/* 레이블 */
+.pwd-check-group label {
+  font-weight: bold;
+  color: #444;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* 입력 필드 */
+.pwd-input-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  color: #555;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* 확인 버튼 */
+.pwd-check-btn {
+  background-color: #e0e0e0; /* 연한 회색 버튼 */
+  color: black;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.pwd-check-btn:hover {
+  background-color: #d0d0d0;
+}
+
+/* 에러 메시지 */
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+  text-align: center;
+}
+
+/* 팝업 스타일 */
+#errorPopup {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333; /* 어두운 배경색 */
+  color: white; /* 텍스트는 흰색 */
+  padding: 15px;
+  border-radius: 8px;
+  display: none;
+  z-index: 1000;
+  width: 80%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+}
+
+#errorPopup.show {
+  display: block; /* 팝업을 보여줄 때 */
+}
+
+/* ================================================== */
+
+/* modify */
+
+/* 개인 정보 수정 페이지 배경 및 폼 */
+.modify-container {
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* 폼과 제목을 세로로 나란히 배치 */
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 150px); /* 헤더와 푸터 제외한 높이 */
+  position: relative;
+}
+
+/* 폼 스타일 */
+.modify-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+}
+
+.modify-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  width: 100%;
+}
+
+/* 입력 필드 */
+.modify-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* 버튼 스타일 */
+.modify-btn {
+  padding: 10px 15px;
+  background-color: #e0e0e0; /* 연한 회색 버튼 */
+  color: black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.modify-btn:hover {
+  background-color: #d0d0d0;
+}
+
+/* 오류 및 성공 메시지 */
+.availability {
+  font-weight: bold;
+  margin-top: 5px;
+}
+.available {
+  color: green;
+}
+.not-available {
+  color: red;
+}
+.error {
+  color: red;
+  font-weight: bold;
+}
+.success {
+  color: green;
+  font-weight: bold;
+}
+
+
+/* ================================================== */
+
+/* myblog */
+
+/* My Blog 페이지 스타일 */
+
+/* 전체 레이아웃 설정 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* 연한 그레이색상으로 변경 */
+}
+
+/* 헤더 */
+.myblog-header {
+    background-color: #FFFFFF;
+    color: black;
+    padding: 20px;
+    text-align: center;
+}
+
+/* 네비게이션 메뉴 바 스타일 */
+.myblog-menu-bar {
+    background-color: #FFFFFF; /* 헤더와 동일한 배경 색상 */
+    color: black;
+    padding: 5px; /* 패딩을 줄여서 세로 높이를 줄임 */
+    text-align: center;
+    width: 100%; /* 가로 폭은 100%로 유지 */
+    margin: 0 auto; /* 중앙에 배치 */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
+    border-radius: 8px; /* 둥근 모서리 */
+}
+
+/* 네비게이션 메뉴 리스트 스타일 */
+.myblog-menu-list {
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* 중앙 정렬 */
+    gap: 20px; /* 항목들 사이 간격 */
+}
+
+/* 네비게이션 메뉴 아이템 스타일 */
+.myblog-menu-item {
+    font-size: 14px; /* 글자 크기 약간 작게 설정 */
+    font-weight: bold; /* 글자 두께 */
+    padding: 5px 10px; /* 세로 패딩을 줄여서 세로 높이를 줄임 */
+    border-radius: 5px;
+}
+
+.myblog-menu-item a {
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: black; /* 글자 색상 */
+}
+
+/* 호버 시 스타일 */
+.myblog-menu-item a:hover {
+    background-color: #F0F0F0; /* 호버 시 밝은 회색 배경 */
+    border-radius: 5px; /* 모서리 둥글게 */
+}
+
+/* 메인 컨테이너 */
+.myblog-main-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* 왼쪽 1, 중앙 3 비율로 설정 */
+    gap: 20px;
+    padding: 20px;
+    align-items: stretch; /* 모든 섹션의 높이 동일하게 */
+}
+
+/* 프로필 섹션 */
+.myblog-profile-section {
+    grid-column: 1; /* 첫 번째 열에 위치 */
+    grid-row: 1;    /* 첫 번째 행에 위치 */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    height: 400px; /* 방문자 섹션과 동일하게 높이 설정 */
+}
+
+/* 프로필 사진 */
+.myblog-profile-picture {
+    width: 80px; /* 크기를 줄여서 레이아웃에 맞춤 */
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+/* 버튼 스타일 */
+.myblog-settings-btn {
+    background-color: #d3d3d3;
+    color: black;
+    padding: 5px 15px; /* 패딩을 줄여서 버튼 크기를 맞춤 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px; /* 버튼 텍스트 크기를 줄여서 공간 절약 */
+    margin-bottom: 5px; /* 버튼 사이 간격 조정 */
+}
+
+/* 텍스트 */
+.myblog-profile-info p {
+    font-size: 14px; /* 텍스트 크기 줄임 */
+    margin-bottom: 5px;
+}
+
+
+/* 게시물 섹션 */
+.myblog-recent-posts-section {
+    grid-column: 2; /* 두 번째 열에 위치 */
+    grid-row: 1;    /* 첫 번째 행에 위치 */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 300px;
+    margin-bottom: 20px;
+}
+
+/* 인기 게시물 섹션 */
+.myblog-popular-posts-section {
+    grid-column: 2; /* 두 번째 열에 위치 */
+    grid-row: 2;    /* 두 번째 행에 위치 (최신 게시물 아래) */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 300px;
+}
+
+/* 게시물 컨테이너: 3개의 게시물이 가로로 배치되도록 설정 */
+.myblog-posts-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* 요소 사이에 공간을 줍니다 */
+}
+
+/* 개별 게시물 스타일 */
+.myblog-post-item {
+  width: calc(33.33% - 10px); /* 각 게시물 항목의 너비 */
+  margin: 5px; /* 항목 간의 여백 */
+  border: 1px solid #ccc; /* 게시물 항목 테두리 */
+  padding: 10px; /* 내부 여백 */
+  box-sizing: border-box; /* 테두리와 패딩이 포함된 너비 계산 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+/* 게시물 호버 시 약간 확대 효과 */
+.myblog-post-item:hover {
+    transform: scale(1.05); /* 살짝 확대 */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+
+/* 게시물 썸네일 이미지 */
+.myblog-post-thumbnail {
+     display: block; /* 이미지를 블록으로 설정하여 중앙 정렬 가능 */
+     margin: 0 auto; /* 중앙 정렬을 위한 마진 */
+     width: 100%; /* 가로 크기를 100%로 설정 */
+     height: auto; /* 세로 크기를 자동으로 조정 */
+     max-height: 200px; /* 최대 높이를 설정하여 일정하게 유지 */
+    object-fit: contain; /* 이미지를 짤리지 않게 조정 */
+     border-radius: 8px; /* 모서리를 둥글게 */
+ }
+
+/* 게시물 제목 */
+.myblog-post-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+/* 게시물 내용 미리보기 */
+.myblog-post-info p {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* 방문자 섹션 간결 스타일 */
+.myblog-visitors-section {
+    grid-column: 1; /* 첫 번째 열에 위치 */
+    grid-row: 2;    /* 두 번째 행에 위치 (프로필 아래) */
+    background-color: #f8f9fa; /* 부드러운 배경 색 */
+    padding: 15px;
+    border: 1px solid #ddd; /* 얇은 테두리 추가 */
+    border-radius: 8px;
+    text-align: center;
+    color: #666;
+    font-family: Arial, sans-serif;
+}
+
+/* 제목 스타일 */
+.myblog-visitors-section h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+/* 방문자 카운트 */
+.myblog-visitors-section .visitor-count {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.myblog-visitors-section .visitor-stats {
+    font-size: 0.85rem;
+    color: #666;
+    display: flex;
+    justify-content: center;
+    gap: 8px; /* 통계들 간격 */
+}
+
+.myblog-visitors-section .visitor-stats span {
+    font-weight: normal;
+    color: #333;
+}
+
+/* 방문자 목록 스타일 */
+.myblog-visitors-section ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* 방문자 항목 스타일 */
+.myblog-visitors-section ul li {
+    background-color: #ffffff; /* 흰색 배경 */
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer; /* 클릭할 수 있는 느낌 추가 */
+}
+
+.myblog-visitors-section ul li:hover {
+    transform: translateY(-3px); /* 살짝 위로 올라가는 효과 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* 그림자 효과 강화 */
+}
+
+
+/* 반응형: 화면이 좁아질 때 게시물 배치 조정 */
+@media (max-width: 768px) {
+    .myblog-posts-container {
+        grid-template-columns: 1fr; /* 작은 화면에서는 한 줄에 하나씩 */
+    }
+
+    .myblog-main-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ================================================== */
+/* 레이아웃 2 스타일 */
+
+/* 전체 레이아웃 설정 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* 연한 그레이색상으로 변경 */
+}
+
+/* 헤더 */
+.myblog-header {
+    background-color: #FFFFFF;
+    color: black;
+    padding: 20px;
+    text-align: center;
+}
+
+/* 네비게이션 메뉴 바 스타일 */
+.myblog-menu-bar {
+    background-color: #FFFFFF; /* 헤더와 동일한 배경 색상 */
+    color: black;
+    padding: 5px; /* 패딩을 줄여서 세로 높이를 줄임 */
+    text-align: center;
+    width: 100%; /* 가로 폭은 100%로 유지 */
+    margin: 0 auto; /* 중앙에 배치 */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
+    border-radius: 8px; /* 둥근 모서리 */
+}
+
+/* 네비게이션 메뉴 리스트 스타일 */
+.myblog-menu-list {
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* 중앙 정렬 */
+    gap: 20px; /* 항목들 사이 간격 */
+}
+
+/* 네비게이션 메뉴 아이템 스타일 */
+.myblog-menu-item {
+    font-size: 14px; /* 글자 크기 약간 작게 설정 */
+    font-weight: bold; /* 글자 두께 */
+    padding: 5px 10px; /* 세로 패딩을 줄여서 세로 높이를 줄임 */
+    border-radius: 5px;
+}
+
+.myblog-menu-item a {
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: black; /* 글자 색상 */
+}
+
+/* 호버 시 스타일 */
+.myblog-menu-item a:hover {
+    background-color: #F0F0F0; /* 호버 시 밝은 회색 배경 */
+    border-radius: 5px; /* 모서리 둥글게 */
+}
+
+/* 메인 컨테이너: 첫 번째 열은 좁고, 두 번째 열은 넓게 설정 */
+.myblog-main-container2 {
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* 첫 번째 열은 좁게, 두 번째 열은 넓게 설정 */
+    gap: 20px;
+    padding: 20px;
+    grid-template-rows: auto auto; /* 두 개의 행으로 설정 */
+}
+
+/* 프로필 섹션: 첫 번째 열에 위치 */
+.myblog-profile-section2 {
+    grid-column: 1 / 2; /* 첫 번째 열에 위치 */
+    grid-row: 1 / 2;    /* 첫 번째 행에 위치 */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    height: 250px;
+    grid-column: 1; /* 첫 번째 열에 위치 */
+}
+
+/* 프로필 사진 */
+.myblog-profile-picture2 {
+    width: 80px; /* 크기를 줄여서 레이아웃에 맞춤 */
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+/* 버튼 스타일 */
+.myblog-settings-btn2 {
+    background-color: #d3d3d3;
+    color: black;
+    padding: 5px 15px; /* 패딩을 줄여서 버튼 크기를 맞춤 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px; /* 버튼 텍스트 크기를 줄여서 공간 절약 */
+    margin-bottom: 5px; /* 버튼 사이 간격 조정 */
+}
+
+/* 게시물 섹션 */
+/* 최신 게시물 섹션 */
+.myblog-recent-posts-section2 {
+    grid-column: 2 / 3; /* 두 번째 열에 위치 */
+    grid-row: 1 / 2;    /* 첫 번째 행에 위치 */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 400px; /* 프로필/방문자 섹션과 높이 맞춤 */
+    margin-bottom: 20px;
+}
+
+/* 인기 게시물 섹션 */
+.myblog-popular-posts-section2 {
+    grid-column: 2 / 3; /* 두 번째 열에 위치 */
+    grid-row: 2 / 3;    /* 두 번째 행에 위치 */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 400px; /* 프로필/방문자 섹션과 높이 맞춤 */
+}
+
+/* 게시물 컨테이너: 세로로 게시물들이 나열되도록 설정 */
+.myblog-posts-container2 {
+    display: flex;
+    flex-direction: column; /* 게시물들을 세로로 배치 */
+    gap: 20px; /* 게시물 간의 간격 */
+}
+.myblog-post-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center; /* 텍스트 중앙 정렬 */
+    width: calc(33.33% - 15px); /* 여백을 고려하여 너비 조정 */
+    margin: 5px; /* 적절한 여백 */
+}
+
+/* 게시물 항목 스타일 */
+.myblog-post-item2 {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* 게시물 항목: 번호, 제목, 닉네임, 날짜 */
+.myblog-post-item2 .post-number {
+    width: 50px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.myblog-post-item2 .post-title {
+    flex-grow: 2;
+    text-align: left;
+    margin-left: 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.myblog-post-item2 .post-nickname {
+    flex-grow: 1;
+    text-align: left;
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+.myblog-post-item2 .post-date {
+    width: 150px;
+    text-align: right;
+    font-size: 12px;
+    color: #666;
+}
+
+/* 게시물 호버 시 약간 확대 효과 */
+.myblog-post-item2:hover {
+    transform: scale(1.02); /* 살짝 확대 */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+
+/* 게시물 제목 */
+.myblog-post-info2 h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+/* 게시물 내용 미리보기 */
+.myblog-post-info2 p {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* 방문자 정보 섹션: 프로필 아래에 위치, 첫 번째 열에 위치 */
+.myblog-visitors-section2 {
+    grid-column: 1 / 2; /* 첫 번째 열에 위치 */
+    grid-row: 2 / 3;    /* 두 번째 행에 위치 */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    height: 300px;
+    grid-column: 1; /* 첫 번째 열에 위치 */
+    margin-top: 20px; /* 프로필 섹션과 간격 추가 */
+}
+
+.myblog-visitors-section2 ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.myblog-visitors-section2 ul li {
+    background-color: #e4e4e4;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* 반응형: 화면이 좁아질 때 게시물 배치 조정 */
+@media (max-width: 768px) {
+    .myblog-posts-container2 {
+        grid-template-columns: 1fr; /* 작은 화면에서는 한 줄에 하나씩 */
+    }
+
+    .myblog-main-container2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+/* ================================================== */
+
+/* blog-text-form */
+
+/* 게시글 작성 페이지 배경 및 폼 */
+.post-form-container {
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* 상단에 제목, 그 아래에 폼이 위치하도록 수정 */
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 150px); /* 헤더와 푸터를 제외한 중앙 정렬 */
+}
+
+.post-form-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    width: 100%; /* 제목이 폼 위에 넓게 차지하도록 */
+}
+
+/* 폼 그룹 */
+.post-form-group {
+    margin-bottom: 15px;
+    width: 100%; /* 폼의 폭을 전체로 설정 */
+    max-width: 600px; /* 최대 넓이 제한 */
+}
+
+/* 폼 입력 필드 */
+.post-form-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Submit 버튼 */
+.post-submit-btn {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%; /* 버튼이 폼 폭에 맞도록 설정 */
+    max-width: 600px; /* 버튼 폭 제한 */
+}
+
+.post-submit-btn:hover {
+    background-color: #555;
+}
+
+/* Summernote 전용 폼 그룹 */
+.summernote-form-group {
+    margin-bottom: 12px;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Summernote 에디터 */
+.summernote-form-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.post-form-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.post-form-buttons .post-submit-btn,
+.post-form-buttons .post-back-btn {
+  width: 48%; /* 두 버튼을 같은 크기로 좌우에 배치 */
+}
+
+/* ================================================== */
+
+/* 블로그 정보 수정 */
+
+/* 전체 페이지 중앙 정렬 및 컨테이너 스타일 */
+#profile-section {
+    min-height: 700px; /* 필요한 세로 길이에 맞게 조정 */
+    background-color: #f5f5f5; /* 배경색 추가, 필요에 따라 제거 가능 */
+    padding: 30px; /* 안쪽 여백 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 */
+}
+/* 프로필 이미지 섹션 */
+.profile-image-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+}
+
+.profile-image-wrapper {
+  width: 161px;
+  height: 161px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 20px;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-image-controls {
+  display: flex;
+  flex-direction: column;edit-section
+}
+
+.upload-button, .delete-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.delete-button {
+  background-color: #f44336;
+}
+
+.upload-button:hover, .delete-button:hover {
+  opacity: 0.8;
+}s
+
+.edit-container {
+    background-color: #f5f5f5;
+    width: 400px;  /* 전체 박스 크기 */
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 탭 네비게이션 스타일 */
+.edit-nav-bar {
+    display: flex;
+    justify-content: space-around;  /* 버튼들이 간격 맞게 정렬됨 */
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.edit-nav-item {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    background-color: #d3d3d3;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.edit-nav-item.active {
+    background-color: #4CAF50; /* 활성화된 탭 색상 */
+}
+
+/* 섹션 스타일 */
+.edit-section {
+    display: none;  /* 기본적으로 섹션 숨김 */
+}
+
+.edit-section.active {
+    display: block;  /* 활성화된 섹션만 표시 */
+}
+
+/* 폼 입력 스타일 */
+.edit-form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.edit-form input[type="text"],
+.edit-form input[type="email"],
+.edit-form input[type="password"],
+.edit-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.edit-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.edit-form button:hover {
+    background-color: #45a049;
+}
+
+/* 제목 스타일 */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+
+
+/* ================================================== */
+
+/* 게시물 리스트 */
+
+/* post-list-style.css */
+
+/* 게시물 리스트 컨테이너 */
+.post-list-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 게시물 리스트 제목 */
+.post-list-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* 테이블 스타일 */
+.post-list-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.post-list-table th, .post-list-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+/* 테이블 헤더 스타일 */
+.post-list-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+/* 각 셀에 스타일 추가 */
+.post-list-table td {
+    color: #333;
+}
+
+.post-list-table td:first-child {
+    font-weight: bold;
+}
+
+/* 검색 */
+/* 검색 폼 스타일 */
+.post-search-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.post-search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-select {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+}
+
+.search-input {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 200px;
+    outline: none;
+}
+
+.search-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100px; /* 원하는 가로 길이로 조정 */
+}
+
+.search-btn:hover {
+    background-color: #0056b3;
+}
+
+
+/* ================================================== */
+
+/* 게시글 상세보기*/
+
+/* 공통 스타일 */
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+/* 헤더 */
+.post-header {
+  text-align: center;
+  padding: 20px 0;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.header-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.post-header h1 {
+  font-size: 28px;
+  color: #333;
+  margin: 0;
+}
+
+.author-profile-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* 게시글 내용 */
+.post-content-section {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+.post-content {
+  line-height: 1.6;
+  font-size: 1em;
+  word-break: break-word;
+}
+
+/* 첨부 파일 */
+.attachments {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 10px;
+  font-size: 14px;
+  color: #555;
+}
+.attachments ul {
+  list-style: none;
+  padding: 0;
+}
+.attachments li {
+  margin-bottom: 10px;
+}
+.attachments a {
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: none;
+}
+.attachments a:hover {
+  color: #0056b3;
+}
+
+/* 좋아요 및 댓글 수 */
+/* 인터랙션 섹션 스타일 */
+.interaction-section {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.like-btn, .comment-btn, .edit-btn, .delete-btn {
+  display: flex;
+  align-items: center;
+  padding: 8px 15px;
+  border: 1px solid #d2d2d2;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: white;
+  color: #6c757d;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+
+.dropdown-arrow {
+  font-size: 12px;
+}
+
+/* 드롭다운 메뉴 스타일 */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 5px;
+  display: none;
+  z-index: 1000;
+}
+
+.like-wrapper:hover .dropdown-menu,
+.comment-wrapper:hover .dropdown-menu {
+  display: block;
+}
+
+.like-btn:hover, .comment-btn:hover, .edit-btn:hover, .delete-btn:hover {
+  border-color: #77dd77;
+}
+
+.like-dropdown p, .comment-dropdown p {
+  margin: 0;
+}
+
+
+/* 댓글 리스트 */
+/* 댓글 영역 스타일 */
+.comments-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.comments-section li {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.comments-section {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.comment-info {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.comment-profile-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.comment-badge {
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.comment-content {
+  font-size: 14px;
+  color: #333;
+  margin-top: 5px;
+}
+
+.comment-date {
+  color: #999; /* 연한 회색 */
+  font-size: 12px; /* 글자 크기를 약간 작게 조절할 수도 있어 */
+}
+
+.comment-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+
+
+.reply-btn,
+.edit-comment-btn,
+.delete-comment-btn {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.reply-btn:hover,
+.edit-comment-btn:hover,
+.delete-comment-btn:hover {
+  text-decoration: underline;
+}
+
+/* 댓글 작성 섹션 */
+.add-comment-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-top: 1px solid #eee;
+}
+
+.add-comment-section textarea {
+  width: 100%;
+  height: 80px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none;
+}
+
+.submit-comment-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-comment-btn:hover {
+  background-color: #45a049;
+}
+
+/* 댓글 수정 폼 스타일 */
+.edit-comment-form {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* 텍스트 영역 스타일 */
+.edit-comment-form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    font-size: 14px;
+    font-family: inherit;
+    margin-bottom: 8px;
+}
+
+/* 버튼 스타일 */
+.edit-comment-form .edit-submit-btn,
+.edit-comment-form .edit-cancel-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.edit-comment-form .edit-submit-btn {
+    background-color: #28a745; /* 녹색 */
+    color: white;
+}
+
+.edit-comment-form .edit-submit-btn:hover {
+    background-color: #218838;
+}
+
+.edit-comment-form .edit-cancel-btn {
+    background-color: #dc3545; /* 빨간색 */
+    color: white;
+}
+
+.edit-comment-form .edit-cancel-btn:hover {
+    background-color: #c82333;
+}
+
+/* 수정/삭제 및 목록으로 돌아가는 버튼 스타일 */
+.post-action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* 수정/삭제 버튼 스타일 */
+.edit-btn, .delete-btn {
+  border: 1px solid #cccccc; /* 연한 회색 테두리 */
+  background-color: white; /* 흰색 배경 */
+  color: #777777; /* 회색 글씨 */
+  padding: 8px 12px; /* 여백 */
+  font-size: 14px; /* 글씨 크기 */
+  cursor: pointer;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+  background-color: #f5f5f5; /* 호버 시 약간 진한 배경 */
+}
+
+.edit-btn:focus, .delete-btn:focus {
+  outline: none;
+  border-color: #999999; /* 포커스 시 테두리 진하게 */
+}
+
+/* 목록으로 돌아가는 버튼 */
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.back-to-list-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #007bff;
+  background: none;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.back-to-list-btn:hover {
+  color: #fff;
+  background-color: #007bff;
+}
+
+
+
+/* ================================================== */
+
+/* 페이징 */
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pagination-item {
+    margin: 0 5px;
+}
+
+.pagination-link {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-link:hover {
+    background-color: #f0f0f0;
+}
+
+.pagination-item.active .pagination-link {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.pagination-link.prev,
+.pagination-link.next {
+    font-weight: bold;
+}
+
+
+/* ================================================== */
+
+/* posts-trend-style.css */
+
+
+/* hr 태그 스타일 */
+hr {
+    border: none;               /* 기본 테두리 제거 */
+    border-top: 1px solid rgba(0, 0, 0, 0.1);  /* 투명 회색으로 선 추가 */
+    margin: 10px 0;             /* 위아래 여백 설정 */
+    width: 100%;                /* 너비 조절 */
+}
+
+/* post-item-link 기본 스타일 초기화 */
+.post-item-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+/* 섹션 스타일 */
+.posts-trend-section {
+  padding: 40px;
+  width: 100%; /* 전체 화면 넓이로 설정 */
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+/* 검색 폼 스타일 */
+.post-search-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.post-search-form {
+    display: inline-flex;
+    align-items: center;
+}
+
+.search-select,
+.search-input,
+.search-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.search-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.search-btn:hover {
+    background-color: #0056b3;
+}
+
+
+/* 그리드 레이아웃 */
+.posts-grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 한 줄에 5개 */
+  gap: 30px; /* 게시물 사이 간격 */
+  width: 100%;
+}
+
+/* 개별 게시물 스타일 */
+.post-item {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* 트렌드 게시글 제목 스타일 */
+.post-trend-title {
+    font-size: 18px;        /* 글씨 크기 */
+    font-weight: bold;      /* 굵기 조정 */
+    color: #333;            /* 제목 색상 */
+    padding: 0 10px;        /* 좌우 여백 */
+    margin-bottom: 8px;     /* 아래쪽 여백 */
+}
+
+.post-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* 이미지가 들어갈 div 고정 스타일 */
+.img-container {
+  width: 100%;   /* 부모 요소인 post-item의 너비에 맞춤 */
+  height: 200px; /* 높이를 고정 */
+  overflow: hidden; /* 이미지가 넘칠 경우 숨김 처리 */
+}
+
+/* 이미지 스타일 */
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 이미지를 div에 꽉 채우되, 잘릴 수 있음 */
+}
+
+/* 게시물 정보 스타일 */
+.post-info {
+  padding: 15px;
+}
+
+
+/* 제목 스타일 */
+.post-title {
+  font-size: 2rem;      /* 제목을 더 크게 */
+  font-weight: bold;
+  text-align: left;     /* 왼쪽 정렬 */
+  color: #333;          /* 제목 색상 */
+  margin-bottom: 8px;   /* 제목과 작성자 사이 여백 */
+}
+
+/* 작성자와 날짜 스타일 */
+.post-meta {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;      /* 텍스트 크기 조정 */
+  color: #666;          /* 날짜와 작성자 텍스트 색상 */
+}
+
+.author-name {
+  font-weight: bold;    /* 작성자 이름 굵게 */
+}
+
+.post-date {
+  margin-left: 5px;     /* 작성자 이름과 날짜 사이 간격 */
+  color: #666;          /* 날짜 색상 */
+}
+.post-excerpt {
+  font-size: 1rem;
+  color: #666;
+  margin: 10px 0;
+}
+
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: #999;
+}
+
+.post-meta .post-author {
+  font-weight: bold;
+}
+
+
+/* ================================================== */
+
+/* 트렌드/게시글/게시글주인 게시글 보여주기 */
+/* 목록 보기/숨기기 버튼 */
+.toggle-button {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* 게시글 목록 */
+#postList ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.post-title-link {
+    display: block;
+    padding: 0.5rem;
+    color: #333;
+    text-decoration: none;
+}
+
+.post-title-link.active {
+    font-weight: bold;
+    color: #0066cc; /* 포커스된 게시글의 색상 */
+}
+
+/* 페이지네이션 스타일 */
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.pagination button {
+    padding: 0.25rem 0.5rem;
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.pagination button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}

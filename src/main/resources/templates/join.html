@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입</title>
+  <link rel="stylesheet" href="/css/style.css"> <!-- 공통 스타일 -->
+  <link rel="stylesheet" href="/css/header-style.css"> <!-- 헤더에 대한 고유 CSS -->
+  <link rel="stylesheet" href="/css/main-nav-style.css"> <!-- 네비게이션에 대한 고유 CSS -->
+  <link rel="stylesheet" href="/css/footer-style.css"> <!-- 푸터에 대한 고유 CSS -->
+  <link rel="stylesheet" href="/css/join-style.css"> <!-- 고유 스타일 -->
+
+  <!-- 다음 주소 검색 API -->
+  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+  <script>
+    // 나이 계산
+    function calculateAge() {
+      const birthdayInput = document.getElementById("birthday");
+      const ageInput = document.getElementById("age");
+      const birthday = new Date(birthdayInput.value);
+      const today = new Date();
+
+      let age = today.getFullYear() - birthday.getFullYear();
+      const monthDifference = today.getMonth() - birthday.getMonth();
+
+      if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthday.getDate())) {
+        age--;
+      }
+      ageInput.value = age;
+    }
+
+    // 아이디 유효성 검사
+    function validateId(id) {
+      const idRegex = /^[a-zA-Z0-9]+$/;
+      return idRegex.test(id);
+    }
+
+    // 아이디 중복 확인
+    function checkId() {
+      const id = document.getElementById("id").value;
+      const availabilityText = document.getElementById("availabilityText");
+
+      if (!validateId(id)) {
+        availabilityText.textContent = "아이디는 영문과 숫자만 가능합니다.";
+        availabilityText.className = "availability not-available";
+        return;
+      }
+
+      if (id) {
+        fetch(`/check-availability?field=id&value=${id}`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.exists) {
+              availabilityText.textContent = "사용 불가능";
+              availabilityText.className = "availability not-available";
+            } else {
+              availabilityText.textContent = "사용 가능";
+              availabilityText.className = "availability available";
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            availabilityText.textContent = "오류 발생";
+            availabilityText.className = "availability not-available";
+          });
+      } else {
+        availabilityText.textContent = "아이디를 입력해주세요.";
+        availabilityText.className = "availability not-available";
+      }
+    }
+
+    // 닉네임 중복 확인
+    function checkNickname() {
+      const nickname = document.getElementById("nickname").value;
+      const nicknameAvailabilityText = document.getElementById("nicknameAvailabilityText");
+
+      if (nickname) {
+        fetch(`/check-availability?field=nickname&value=${nickname}`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.exists) {
+              nicknameAvailabilityText.textContent = "사용 불가능";
+              nicknameAvailabilityText.className = "availability not-available";
+            } else {
+              nicknameAvailabilityText.textContent = "사용 가능";
+              nicknameAvailabilityText.className = "availability available";
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            nicknameAvailabilityText.textContent = "오류 발생";
+            nicknameAvailabilityText.className = "availability not-available";
+          });
+      } else {
+        nicknameAvailabilityText.textContent = "닉네임을 입력해주세요.";
+        nicknameAvailabilityText.className = "availability not-available";
+      }
+    }
+
+    // 직접 입력 필드 표시/숨기기 함수
+    function toggleDomainInput() {
+      const domainSelect = document.getElementById("domain");
+      const customDomainInput = document.getElementById("customDomain");
+
+      if (domainSelect.value === "custom") {
+        customDomainInput.style.display = "inline";
+      } else {
+        customDomainInput.style.display = "none";
+        customDomainInput.value = ""; // 직접 입력 필드 초기화
+      }
+    }
+
+    // 도메인 확장자 유효성 검사
+    function isValidDomain(domain) {
+      const domainRegex = /^[a-zA-Z0-9.-]+\.(com|net|org|kr|co.kr|edu|gov)$/; // 필요한 확장자 추가 가능
+      return domainRegex.test(domain);
+    }
+
+    // 이메일 중복 확인
+    function checkEmail() {
+      const email = document.getElementById("email").value; // 이메일 앞부분
+      const domainSelect = document.getElementById("domain").value; // 선택한 도메인
+      const customDomainInput = document.getElementById("customDomain").value; // 직접 입력한 도메인
+      const emailAvailabilityText = document.getElementById("emailAvailabilityText");
+
+      // 도메인 값 결정: 선택한 도메인이 "직접 입력"이면 customDomain 사용, 아니면 domain 사용
+      const domain = domainSelect === "custom" ? customDomainInput : domainSelect;
+
+      // 이메일과 도메인이 모두 입력된 경우에만 중복 확인
+      if (email && domain) {
+        // customDomain일 때 도메인 유효성 검사
+        if (domainSelect === "custom" && !isValidDomain(domain)) {
+          emailAvailabilityText.textContent = "올바른 도메인을 입력해주세요 (예: example.com)";
+          emailAvailabilityText.className = "availability not-available";
+          return; // 유효하지 않으면 중복 확인을 진행하지 않음
+        }
+
+        const fullEmail = `${email}@${domain}`; // 이메일 전체 주소 조합
+
+        fetch(`/check-availability?field=email&value=${fullEmail}`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.exists) {
+              emailAvailabilityText.textContent = "사용 불가능";
+              emailAvailabilityText.className = "availability not-available";
+            } else {
+              emailAvailabilityText.textContent = "사용 가능";
+              emailAvailabilityText.className = "availability available";
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            emailAvailabilityText.textContent = "오류 발생";
+            emailAvailabilityText.className = "availability not-available";
+          });
+      } else {
+        // 이메일이나 도메인이 입력되지 않은 경우
+        emailAvailabilityText.textContent = email ? "도메인을 선택하거나 입력해주세요." : "이메일을 입력해주세요.";
+        emailAvailabilityText.className = "availability not-available";
+      }
+    }
+
+    // 비밀번호 일치 여부 확인
+    function validatePassword() {
+      const pwd = document.getElementById("pwd").value;
+      const pwdConfirm = document.getElementById("pwdConfirm").value;
+      const errorText = document.getElementById("errorText");
+      const successText = document.getElementById("successText");
+
+      if (pwd.length < 8) {
+        errorText.textContent = "비밀번호는 최소 8자리여야 합니다.";
+        successText.textContent = "";
+      } else if (pwd !== pwdConfirm) {
+        errorText.textContent = "비밀번호가 다릅니다.";
+        successText.textContent = "";
+      } else {
+        errorText.textContent = "";
+        successText.textContent = "비밀번호가 일치합니다.";
+      }
+    }
+
+    // 폼 유효성 검사
+    function validateForm() {
+      const fields = [
+        "id", "pwd", "pwdConfirm", "name", "birthday", "nickname", "address"
+      ];
+      const errorText = document.getElementById("formErrorText");
+      let isValid = true;
+
+      fields.forEach(field => {
+        const input = document.getElementById(field).value;
+        if (!input) {
+          isValid = false;
+        }
+      });
+
+      if (!isValid) {
+        errorText.textContent = "이곳을 작성해주세요.";
+        return false;
+      } else {
+        errorText.textContent = "";
+      }
+
+      validatePassword();
+      return true;
+    }
+
+        // 카카오 주소 검색 API 실행
+function execDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            console.log(data);  // 선택된 주소 데이터를 콘솔에 출력
+            // 선택된 주소 정보를 해당 필드에 자동으로 입력
+            document.getElementById('postalCode').value = data.zonecode; // 우편번호
+            document.getElementById('address').value = data.roadAddress || data.jibunAddress; // 도로명 또는 지번 주소
+            document.getElementById('detailAddress').focus(); // 상세 주소로 포커스 이동
+        }
+    }).open(); // 팝업창 열기
+}
+  </script>
+</head>
+<body>
+<!-- 헤더 -->
+<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/nav :: nav"></div>
+<br>
+<br>
+<div class="main-content">
+  <form action="/joinproc" method="post" class="join-form" onsubmit="return validateForm()">
+    <h1 class="form-title">회원가입</h1>
+    <label for="id">아이디:</label>
+    <input type="text" id="id" name="id" required onblur="checkId()"> <!-- 중복 확인 버튼 삭제하고 onblur 이벤트 추가 -->
+    <span id="availabilityText" class="availability"></span>
+    <br>
+    <label for="pwd">비밀번호:</label>
+    <input type="password" id="pwd" name="pwd" required oninput="validatePassword()">
+    <br>
+    <label for="pwdConfirm">비밀번호 재확인:</label>
+    <input type="password" id="pwdConfirm" name="pwdConfirm" required oninput="validatePassword()">
+    <br>
+    <span id="errorText" class="error"></span>
+    <span id="successText" class="success"></span>
+    <br>
+    <label for="name">이름:</label>
+    <input type="text" id="name" name="name" required>
+    <br>
+    <label for="birthday">생년월일:</label>
+    <input type="date" id="birthday" name="birthday" required onchange="calculateAge()">
+    <br>
+    <label for="age">나이:</label>
+    <input type="number" id="age" name="age" readonly required>
+    <br>
+    <label for="nickname">닉네임:</label>
+    <input type="text" id="nickname" name="nickname" required onblur="checkNickname()"> <!-- onblur 이벤트 추가 -->
+    <span id="nicknameAvailabilityText" class="availability"></span>
+    <br>
+    <!-- 이메일 입력 부분 -->
+    <label for="email">이메일:</label>
+    <div class="email-container">
+      <input type="text" id="email" name="email" placeholder="이메일 입력" required onblur="checkEmail()"> <!-- 이메일 입력 -->
+      <span>@</span>
+      <input type="text" id="customDomain" name="customDomain" placeholder="도메인 직접 입력" style="display:none;" onblur="checkEmail()"> <!-- 직접 입력 영역, 기본적으로 숨김 -->
+      <select id="domain" name="domain" onchange="toggleDomainInput()" class="domain-select">
+        <option value="">도메인 선택</option>
+        <option value="gmail.com">gmail.com</option>
+        <option value="naver.com">naver.com</option>
+        <option value="daum.net">daum.net</option>
+        <option value="custom">직접 입력</option> <!-- 직접 입력 옵션 -->
+      </select>
+    </div>
+    <span id="emailAvailabilityText" class="availability"></span>
+    <br>
+    <br>
+
+    <!-- 주소 입력 섹션 -->
+    <label for="postalCode">우편번호:</label>
+    <input type="text" id="postalCode" name="postalCode" placeholder="우편번호" required readonly>
+    <br>
+    <button type="button" onclick="execDaumPostcode()">주소 검색</button> <!-- 주소 검색 버튼 추가 -->
+    <br>
+    <label for="address">주소:</label>
+    <input type="text" id="address" name="address" placeholder="기본 주소" required readonly>
+    <br>
+    <label for="detailAddress">상세주소:</label>
+    <input type="text" id="detailAddress" name="detailAddress" placeholder="상세 주소">
+    <br>
+
+    <span id="formErrorText" class="error"></span>
+    <br>
+    <button type="submit">회원가입</button>
+  </form>
+</div>
+<br>
+<br>
+<!-- 푸터 -->
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

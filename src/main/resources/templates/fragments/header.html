@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSlog</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/header-style.css"> <!-- 새로운 고유 CSS 파일 -->
+</head>
+<body>
+<header>
+    <nav class="header-navbar">
+        <div class="header-navbar-left">
+            <h1><a href="/" class="header-blog-title">MSlog</a></h1>
+        </div>
+        <div class="header-navbar-right">
+            <!-- 비로그인 상태일 때 (회원가입/로그인 버튼 표시) -->
+            <a th:if="${session.loggedInUserId == null}" href="/join" class="header-nav-item">
+                <img src="/images/join.png" alt="join" class="header-icon-image">
+            </a>
+            <a th:if="${session.loggedInUserId == null}" href="/login" class="header-nav-item">
+                <img src="/images/login.png" alt="Login" class="header-icon-image">
+            </a>
+
+            <!-- 로그인 상태일 때 (회원정보/로그아웃 버튼 표시) -->
+            <a th:if="${session.loggedInUserId != null}" href="/profile" class="header-nav-item">
+                <img src="/images/profile.png" alt="profile" class="header-icon-image">
+            </a>
+            <a th:if="${session.loggedInUserId != null}" href="/logout" class="header-nav-item">
+                <img src="/images/logout.png" alt="logout" class="header-icon-image">
+            </a>
+        </div>
+    </nav>
+</header>
+</body>
+</html>

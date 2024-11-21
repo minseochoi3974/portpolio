@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css"> <!-- 공통 스타일 -->
+  <link rel="stylesheet" href="/css/header-style.css"> <!-- 헤더에 대한 고유 CSS -->
+  <link rel="stylesheet" href="/css/main-nav-style.css"> <!-- 네비게이션에 대한 고유 CSS -->
+  <link rel="stylesheet" href="/css/footer-style.css"> <!-- 푸터에 대한 고유 CSS -->
+  <link rel="stylesheet" href="/css/profile-style.css"> <!-- 프로필 페이지에 대한 고유 CSS -->
+  <title>내정보보기</title>
+</head>
+<body>
+<!-- 헤더 -->
+<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/nav :: nav"></div>
+<br>
+<br>
+<!-- 프로필 정보가 가운데 오도록 설정 -->
+<div class="profile-container">
+  <h1 class="profile-title">내 정보</h1>
+  <div class="profile-group">
+    <label for="id" class="profile-label">아이디:</label>
+    <input type="text" id="id" class="profile-input" th:value="${user.id}" readonly>
+  </div>
+  <div class="profile-group">
+    <label for="name" class="profile-label">이름:</label>
+    <input type="text" id="name" class="profile-input" th:value="${user.name}" readonly>
+  </div>
+  <div class="profile-group">
+    <label for="nickname" class="profile-label">닉네임:</label>
+    <input type="text" id="nickname" class="profile-input" th:value="${user.nickname}" readonly>
+  </div>
+  <div class="profile-group">
+    <label for="email" class="profile-label">이메일:</label>
+    <input type="email" id="email" class="profile-input" th:value="${user.email}" readonly>
+  </div>
+  <div class="profile-group">
+    <label for="birthday" class="profile-label">생년월일:</label>
+    <input type="text" id="birthday" class="profile-input" th:value="${user.birthday}" readonly>
+  </div>
+  <div class="profile-group">
+    <label for="address" class="profile-label">주소:</label>
+    <input type="text" id="address" class="profile-input" th:value="${user.address + ' ' + user.detailAddress}" readonly>
+  </div>
+  <div class="profile-group">
+    <label for="today" class="profile-label">가입일:</label>
+    <input type="text" id="today" class="profile-input" th:value="${user.today}" readonly>
+  </div>
+  <button class="profile-btn" onclick="location.href='/pwd-check'">수정하기</button>
+</div>
+<br>
+<br>
+<!-- 푸터 -->
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

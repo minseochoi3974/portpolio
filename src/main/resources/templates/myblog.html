@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Blog</title>
+  <link rel="stylesheet" href="/css/style.css"> <!-- 공통 스타일 -->
+  <link rel="stylesheet" href="/css/header-style.css"> <!-- 헤더에 대한 고유 CSS -->
+  <link rel="stylesheet" href="/css/main-nav-style.css"> <!-- 네비게이션에 대한 고유 CSS -->
+  <link rel="stylesheet" href="/css/footer-style.css"> <!-- 푸터에 대한 고유 CSS -->
+  <link rel="stylesheet" href="/css/myblog-style.css"> <!-- My Blog 페이지 전용 CSS -->
+</head>
+<body>
+<!-- 헤더 -->
+<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/nav :: nav"></div>
+
+
+<header class="myblog-header">
+  <h1><a th:href="@{/myblog}" th:text="${blogTitle}" style="text-decoration: none; color: inherit;">My Blog</a></h1>
+</header>
+<br>
+
+<!-- 네비게이션 메뉴 추가 -->
+<nav class="myblog-menu-bar">
+  <ul class="myblog-menu-list">
+    <li class="myblog-menu-item"><a href="/blog_text">게시글 작성</a></li>
+    <li class="myblog-menu-item"><a href="/myblog/postlist">전체 게시물</a></li>
+  </ul>
+</nav>
+
+<div th:if="${layout == 1 or layout == null}" class="myblog-main-container1">  <!-- 메인 콘텐츠 -->
+  <div class="myblog-main-container">
+    <!-- 왼쪽 섹션: 프로필 정보 -->
+    <section class="myblog-profile-section">
+      <h3>프로필</h3>
+      <div class="myblog-profile-info">
+        <img th:src="${profileImage}" alt="프로필 사진" class="myblog-profile-picture">
+        <p><span th:text="${nickname}"></span></p>
+        <p><span th:text="${bio}"></span></p><br>
+        <button class="myblog-settings-btn" onclick="location.href='/edit';">설정</button>
+      </div>
+    </section>
+
+    <!-- 중앙 섹션: 최신 게시물 -->
+    <section class="myblog-recent-posts-section">
+      <h3>최신 게시물</h3>
+      <div class="myblog-posts-container">
+        <div th:each="post, iterStat : ${recentPosts}" class="myblog-post-item">
+          <a th:href="@{/post/{id}(id=${post.idx})}">
+            <img th:src="${imageUrls[iterStat.index] != null ? imageUrls[iterStat.index] : '/images/default_image.png'}"
+                 alt="게시물 사진"
+                 class="myblog-post-thumbnail"
+                 style="width: 100%; height: auto; margin: 5px;" />
+            <div class="myblog-post-info">
+              <h3 th:text="${post.title}"></h3>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 오른쪽 섹션: 방문자 정보 -->
+    <section class="myblog-visitors-section">
+      <h3>Total</h3>
+      <div class="visitor-count" th:text="${totalVisitorCount}">0</div>
+      <div class="visitor-stats">
+        <span>Total: <span th:text="${totalVisitorCount}">0</span></span> |
+        <span>Today: <span th:text="${dailyVisitorCount}">0</span></span>
+      </div>
+      <ul>
+        <li th:each="visitor : ${recentVisitors}">
+          <span th:text="${visitor.nickname}">방문자 닉네임</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="myblog-popular-posts-section">
+      <h3>인기 게시물</h3>
+      <div class="myblog-posts-container">
+        <div th:each="post, iterStat : ${popularPosts}" class="myblog-post-item">
+          <a th:href="@{/post/{id}(id=${post.idx})}">
+            <!-- 인기 게시물 이미지 출력 -->
+            <img th:src="${popularImageUrls[iterStat.index]}"
+                 alt="게시물 사진"
+                 class="myblog-post-thumbnail"
+                 style="width: 100%; height: auto; margin: 5px;" />
+            <div class="myblog-post-info">
+              <h3 th:text="${post.title}"></h3>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- 레이아웃 1 -->
+
+<div th:if="${layout == 2}" class="myblog-main-container2">
+  <!-- 프로필 정보 섹션 -->
+  <section class="myblog-profile-section2">
+    <h3>프로필</h3>
+    <div class="myblog-profile-info2">
+      <img th:src="${profileImage}" alt="프로필 사진" class="myblog-profile-picture2">
+      <p><span th:text="${nickname}"></span></p>
+      <p><span th:text="${bio}"></span></p>
+      <button class="myblog-settings-btn2" onclick="location.href='/edit';">설정</button>
+    </div>
+  </section>
+
+  <!-- 방문자 정보 섹션 -->
+  <section class="myblog-visitors-section">
+    <h3>Total</h3>
+    <div class="visitor-count" th:text="${totalVisitorCount}">0</div>
+    <div class="visitor-stats">
+      <span>Total: <span th:text="${totalVisitorCount}">0</span></span> |
+      <span>Today: <span th:text="${dailyVisitorCount}">0</span></span>
+    </div>
+    <ul>
+      <li th:each="visitor : ${recentVisitors}">
+        <span th:text="${visitor.nickname}">방문자 닉네임</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 최신 게시물 섹션 -->
+  <section class="myblog-recent-posts-section2">
+    <h3>최신 게시물</h3>
+    <div class="myblog-posts-container2">
+      <a th:each="post, iterStat : ${recentPosts}" th:href="@{/post/{id}(id=${post.idx})}" class="myblog-post-item2">
+        <div class="post-number" th:text="${iterStat.index + 1}"></div>
+        <div class="post-title" th:text="${post.title}"></div>
+        <div class="post-nickname" th:text="${post.nickname}"></div>
+        <div class="post-views">조회수: <span th:text="${post.views}"></span></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- 인기 게시물 섹션 -->
+  <section class="myblog-popular-posts-section2">
+    <h3>인기 게시물</h3>
+    <div class="myblog-posts-container2">
+      <a th:each="post, iterStat : ${popularPosts}" th:href="@{/post/{id}(id=${post.idx})}" class="myblog-post-item2">
+        <div class="post-number" th:text="${iterStat.index + 1}"></div>
+        <div class="post-title" th:text="${post.title}"></div>
+        <div class="post-nickname" th:text="${post.nickname}"></div>
+        <div class="post-views">조회수: <span th:text="${post.views}"></span></div>
+      </a>
+    </div>
+  </section>
+</div>
+
+
+<!-- 레이아웃 2 -->
+
+<!-- 푸터 -->
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

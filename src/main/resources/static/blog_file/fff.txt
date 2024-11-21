@@ -1,0 +1,143 @@
+★ 스프링 부트 초기 설정 방법 ★
+
+▶ 스프링 부트 사이트에 들어가서 파일 생성 
+
+스프링부트 사이트 - Projects - Spring initializr - (Spring Boot DevTools, Lombok, Spring Web, Thymeleaf, Oracle Driver, Spring Data JPA) - 생성 후 D드라이브에 압축 풀기 
+
+---------------------------------------------------------------------------------------------------------------------------------
+인텔리제이 프로그램
+
+▶ File - Project Strucure - project (SDK) 설정 - corretto-17 (없으면 add sdk에서 설치)
+▶ setting - Build - Build Tools - Gradle - 인텔리제이로 변경 
+▶ setting - plugins - Lombok 설치 
+---------------------------------------------------------------------------------------------------------------------------------
+ 
+▶ application.properties 설정 (주석) 
+
+# 사용할 포트번호 작성 
+server.port=8090
+
+# 사용할 JDBC 드라이버 클래스 이름을 설정합니다. 
+# 이 경우 Oracle DB에 연결하기 위한 Oracle JDBC 드라이버를 사용합니다.
+spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+
+# 연결할 데이터베이스의 URL을 지정합니다. 
+# 'localhost'에서 실행 중인 Oracle DB의 1521 포트에서 XE 인스턴스에 연결합니다.
+spring.datasource.url=jdbc:oracle:thin:@//localhost:1521/xe
+
+# 데이터베이스에 접근할 사용자 이름을 설정합니다.
+spring.datasource.username=mschoi
+
+# 데이터베이스에 접근할 때 사용할 비밀번호를 설정합니다.
+spring.datasource.password=123456
+
+# Hibernate가 실행하는 SQL 쿼리를 콘솔에 출력하도록 설정합니다. 
+# 디버깅에 유용합니다.
+spring.jpa.properties.hibernate.show_sql=true
+
+# 출력되는 SQL 쿼리를 가독성 있게 포맷해서 출력하도록 설정합니다.
+spring.jpa.properties.hibernate.format_sql=true
+
+# SQL 쿼리에 주석을 추가해서 어떤 작업이 수행되는지 설명을 포함한 상태로 출력합니다.
+spring.jpa.properties.hibernate.use_sql_comments=true
+
+# JPA의 DDL(Data Definition Language) 자동 실행 동작을 설정합니다.
+# 'none'으로 설정하면 애플리케이션 시작 시 데이터베이스 스키마를 자동으로 수정하거나 생성하지 않습니다.
+spring.jpa.hibernate.ddl-auto=none
+
+# 애플리케이션 콘솔 출력을 항상 ANSI 색상 코드를 사용하여 출력하도록 설정합니다. 
+# 색상 출력으로 로그 가독성을 높일 수 있습니다.
+spring.output.ansi.enabled=always
+
+(이대로 복사 붙혀넣기 할 것)
+server.port=8090
+
+spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+spring.datasource.url=jdbc:oracle:thin:@//localhost:1521/xe
+spring.datasource.username=mschoi
+spring.datasource.password=123456
+
+spring.jpa.properties.hibernate.show_sql=true
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.properties.hibernate.use_sql_comments=true
+spring.jpa.hibernate.ddl-auto=none
+
+spring.output.ansi.enabled=always
+
+---------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
+
+▶ 패키지 controller (자바클래스로 만들기, 처음 대문자 C 대문자)
+@controll, @GetMapping, @SetMapping 이용 
+
+▶ 패키지 dto (자바클래스로 만들기)
+@Data, @ToString (사용할 객체 선언, 생성한 테이블 컬럼명 사용)
+
+▶ 패키지 entity (자바 클래스로 만들기)
+@Entity, @NoArgsConstructor, @Table(name = "member" 내가 사용하는 클래스 명과 생성한 클래스명이 다를경우)
+@ToString @Data
+public class MemberEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "member_seq", allocationSize = 1)
+    @Column(name = "idx", nullable = false, unique = true)
+    private Long id;
+    @Column(name = "userid")
+    private String userid;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "age")
+    private String age;
+    @Column(name = "regdate")
+    private Date date;
+}
+
+    @Id
+    // 이 필드를 엔티티의 기본 키(Primary Key)로 지정합니다.
+    // 데이터베이스 테이블에서 각 행을 유일하게 식별하는 필드입니다.
+    @GeneratedValue
+    // 기본 키 값을 자동으로 생성해줍니다. (idx를 처음부터 기본키 설정, 자동 번호 생성)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    // 'strategy'는 키 생성 전략을 지정하며, SEQUENCE는 데이터베이스 시퀀스를 사용하여 기본 키를 생성하도록 설정합니다.
+
+    @SequenceGenerator
+    // 시퀀스를 생성하는 데 필요한 설정을 정의합니다.
+    
+    @SequenceGenerator(name = "seq", sequenceName = "member_seq", allocationSize = 1)
+    // 'name'은 이 생성기의 이름을 지정하며, 'sequenceName'은 데이터베이스에 존재하는 시퀀스 이름을 지정합니다.
+    // 'allocationSize'는 시퀀스가 증가하는 단위를 설정하는데, 1로 설정하면 시퀀스가 1씩 증가합니다.
+
+
+▶ 패키지 repository (interface로 만들기)
+//인터페이스로 만들기 @Repository
+예) public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
+
+}
+//Repository는 데이터 접근을 관리하는 역할
+
+▶ static -> css
+
+▶ templates -> html 
+
+해당 패키지 필요한 이유 
+// ▶ 패키지 controller
+// 애플리케이션에서 클라이언트의 요청(HTTP)을 처리하는 역할을 담당합니다.
+// 클라이언트로부터 받은 요청을 서비스로 전달하고, 적절한 응답을 클라이언트에 반환합니다.
+// 주로 요청 처리 메서드와 라우팅(경로 매핑)을 정의합니다.
+// 필요한 이유: 사용자와 서버 간의 상호작용을 처리하고, 웹 페이지나 JSON 데이터를 반환하기 위해 필요합니다.
+
+// ▶ 패키지 dto (Data Transfer Object)
+// 클라이언트와 서버 간의 데이터를 전달하기 위한 객체들이 포함됩니다.
+// 주로 엔티티(Entity) 객체와는 별도로 데이터 전달에 최적화된 구조를 가집니다.
+// 필요한 이유: 데이터베이스 엔티티와는 다른 형식으로 데이터를 주고받거나, 데이터를 캡슐화하여 안전하게 전달하기 위해 필요합니다.
+
+// ▶ 패키지 entity
+// 데이터베이스 테이블과 매핑되는 클래스들이 포함됩니다.
+// 각 클래스는 데이터베이스 테이블의 컬럼과 1:1로 매핑되며, 주로 JPA에서 사용됩니다.
+// 필요한 이유: 데이터베이스와 상호작용하고 영속성(Persistence)을 관리하기 위해 필요합니다.
+
+// ▶ 패키지 repository
+// 데이터베이스에 접근하기 위한 인터페이스가 포함됩니다. 
+// 주로 JPA를 통해 CRUD(Create, Read, Update, Delete) 작업을 수행할 수 있습니다.
+// 필요한 이유: 데이터베이스와의 상호작용을 추상화하여 개발자가 쉽게 데이터 작업을 수행할 수 있도록 도와줍니다.
+

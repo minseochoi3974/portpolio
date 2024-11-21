@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts Trend</title>
+    <!-- FontAwesome 추가 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/header-style.css"> <!-- 헤더에 대한 고유 CSS -->
+    <link rel="stylesheet" href="/css/main-nav-style.css"> <!-- 네비게이션에 대한 고유 CSS -->
+    <link rel="stylesheet" href="/css/footer-style.css"> <!-- 푸터에 대한 고유 CSS -->
+    <link rel="stylesheet" href="/css/posts-trend-style.css"> <!-- PostTrend 전용 스타일 -->
+</head>
+<body>
+
+<!-- 헤더 및 네비게이션 -->
+<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/nav :: nav"></div>
+
+<section class="posts-trend-section">
+    <h1>트렌딩 게시물</h1>
+
+    <div class="posts-grid-container">
+        <a th:each="post, iterStat : ${trendingPosts}"
+           th:href="@{/posts_trend/post/{postId}(postId=${post.idx})}"
+           class="post-item-link">
+            <div class="post-item">
+                <!-- 이미지 감싸는 div -->
+                <div class="img-container">
+                    <img th:src="${#lists.size(trendingImageUrls) > iterStat.index ? trendingImageUrls[iterStat.index] : '/images/default_image.png'}" alt="Post Image" />
+                </div>
+                    <br>
+
+                <!-- 게시글 제목 -->
+                <div class="post-trend-title">
+                    <span th:text="${post.title}"></span>
+                </div>
+
+                <div class="post-info">
+                    <!-- 첫번째 줄: 작성날짜와 댓글-->
+                    <div class="post-meta">
+                        <span class="post-date" th:text="${#temporals.format(post.createdDate, 'yyyy년 MM월 dd일')}"></span>
+                        <span th:text="${commentCountMap[post.idx] != null ? commentCountMap[post.idx] : 0} + '개의 댓글'"></span>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <!-- 두 번째 줄: 작성자와 좋아요 -->
+                    <div class="post-meta">
+                        <div class="meta-left">
+                            <span class="post-author">by <span th:text="${post.nickname}"></span></span>
+                        </div>
+                        <div class="meta-right">
+                            <span><i class="fas fa-heart"></i> <span th:text="${post.likes}"></span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
+
+<!-- 푸터 -->
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

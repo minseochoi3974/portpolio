@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/header-style.css"> <!-- 헤더에 대한 고유 CSS -->
+  <link rel="stylesheet" href="/css/main-nav-style.css"> <!-- 네비게이션에 대한 고유 CSS -->
+  <link rel="stylesheet" href="/css/footer-style.css"> <!-- 푸터에 대한 고유 CSS -->
+  <link rel="stylesheet" href="/css/post-list-style.css"> <!-- 게시물 리스트 전용 CSS -->
+  <title>게시물 리스트</title>
+</head>
+<body>
+
+<!-- 헤더 -->
+<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/nav :: nav"></div>
+
+<header class="myblog-header">
+  <h1><a th:href="@{/myblog}" th:text="${blogTitle}" style="text-decoration: none; color: inherit;">My Blog</a></h1>
+</header>
+<br>
+
+<!-- 네비게이션 메뉴 추가 -->
+<nav class="myblog-menu-bar">
+  <ul class="myblog-menu-list">
+    <li class="myblog-menu-item"><a href="/blog_text">게시글 작성</a></li>
+    <li class="myblog-menu-item"><a href="/myblog/postlist">전체 게시물</a></li>
+  </ul>
+</nav>
+<!-- 게시물 리스트 -->
+<div class="post-list-container">
+  <h2 class="post-list-title">게시물 리스트</h2>
+  <!-- 검색 폼 -->
+  <div class="post-search-container">
+    <form action="/search" method="get" class="post-search-form">
+      <select name="searchType" class="search-select">
+        <option value="title">제목</option>
+        <option value="nickname">작성자</option>
+      </select>
+      <input type="text" name="keyword" class="search-input" placeholder="검색어를 입력하세요">
+      <button type="submit" class="search-btn">검색</button>
+    </form>
+  </div>
+
+  <table class="post-list-table">
+    <thead>
+    <tr>
+      <th>번호</th>
+      <th>제목</th>
+      <th>작성자</th>
+      <th>작성일</th>
+      <th>조회수</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="post, stat : ${posts}">
+      <td th:text="${stat.count}">1</td> <!-- 카운팅 번호 (1부터 시작) -->
+      <td>
+        <a th:href="@{/post/{id}(id=${post.idx})}" th:text="${post.title}">제목</a>
+      </td>
+      <td th:text="${post.nickname}">작성자</td>
+      <td th:text="${#temporals.format(post.createdDate, 'MM/dd')}">작성일</td> <!-- 날짜를 '월-일' 형식으로 출력 -->
+      <td th:text="${post.views != null ? post.views : 0}">0</td> <!-- 조회수 -->
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 페이징 -->
+<div class="pagination-container">
+  <ul class="pagination-list">
+
+    <!-- 이전 페이지 버튼 -->
+    <li class="pagination-item" th:if="${currentPage != null and currentPage > 0}">
+      <a class="pagination-link prev" th:href="@{/myblog/postlist(page=${currentPage - 1}, size=${size})}">이전</a>
+    </li>
+
+    <!-- 페이지 번호 리스트 -->
+    <li class="pagination-item" th:each="i : ${#numbers.sequence(0, totalPages != null ? totalPages - 1 : 0)}"
+        th:classappend="${i == currentPage} ? 'active'">
+      <a class="pagination-link" th:href="@{/myblog/postlist(page=${i}, size=${size})}" th:text="${i + 1}">1</a>
+    </li>
+
+    <!-- 다음 페이지 버튼 -->
+    <li class="pagination-item" th:if="${currentPage != null and totalPages != null and currentPage < totalPages - 1}">
+      <a class="pagination-link next" th:href="@{/myblog/postlist(page=${currentPage + 1}, size=${size})}">다음</a>
+    </li>
+
+  </ul>
+</div>
+
+
+<!-- 푸터 -->
+<div th:replace="fragments/footer :: footer"></div>
+
+
+</body>
+</html>
